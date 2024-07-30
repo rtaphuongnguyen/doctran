@@ -57,7 +57,7 @@ class OpenAIDocumentTransformer(DocumentTransformer):
     def executeOpenAICall(self, document: Document) -> Document:
         try:
             function_call = OpenAIFunctionCall(
-                seed=self.config.openai_deployment_id,
+                # seed=self.config.openai_deployment_id,
                 model=self.config.openai_model,
                 messages=[{"role": "user", "content": document.transformed_content}],
                 tools=[{

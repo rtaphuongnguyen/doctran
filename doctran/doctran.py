@@ -16,7 +16,7 @@ class ExtractProperty(BaseModel):
     required: bool = True
 
 class DoctranConfig(BaseModel):
-    openai_deployment_id: Optional[str]
+    # openai_deployment_id: Optional[str]
     openai_model: str
     openai: Any
     openai_token_limit: int
@@ -168,7 +168,7 @@ class DocumentTransformationBuilder:
         return self
 
 class Doctran:
-    def __init__(self, openai_api_key: str = None, openai_model: str = "gpt-4", openai_token_limit: int = 8000, openai_deployment_id: Optional[str] = None):
+    def __init__(self, openai_api_key: str = None, openai_model: str = "gpt-4", openai_token_limit: int = 8000):
         self.config = DoctranConfig(
             openai_model=openai_model,
             openai=openai,
@@ -181,10 +181,10 @@ class Doctran:
         else:
             raise Exception("No OpenAI API Key provided")
 
-        if openai_deployment_id:
-            self.config.openai_deployment_id = openai_deployment_id
-        elif os.environ.get("OPENAI_DEPLOYMENT_ID"):
-            self.config.openai_deployment_id = os.environ["OPENAI_DEPLOYMENT_ID"]
+        # if openai_deployment_id:
+        #     self.config.openai_deployment_id = openai_deployment_id
+        # elif os.environ.get("OPENAI_DEPLOYMENT_ID"):
+        #     self.config.openai_deployment_id = os.environ["OPENAI_DEPLOYMENT_ID"]
 
         if os.environ.get('OPENAI_API_TYPE'):
             self.config.openai.api_type = os.environ['OPENAI_API_TYPE']
